@@ -1,0 +1,45 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+
+{% block child_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'profiles/profile.css' %}"/>
+{% endblock %}
+
+{% block content %}
+
+<h1>PROFILE EDIT PAGE</h1>
+
+<form method="post" action="{% url 'profile' user.id %}">
+    {% csrf_token %}
+    {{ userForm }}
+    {{ profileForm }}
+
+{% comment %}
+    
+    <div class="member-profile">
+
+        <h3>Basic Info</h3>
+        <input type="text">Name: {{ profile_owner.first_name }} {{ profile_owner.last_name }}</input>
+        <input type="text">username: {{ profile_owner.username }}</input>
+        <input type="text">Gender: {{ member.get_gender_display }}</input>
+        <input type="text">Country: {{ member.country }}</input>    
+        <input type="text">Date of Birth: {{ member.dob }}</input>
+        <input type="text">E-mail: {{ profile_owner.email }}</input>
+
+    </div>
+
+    <div class="guide-profile">
+
+        {% if guide %}
+            <h3>Tour Guide Info</h3>
+            <input type="text">{{ guide.description }}</input>
+            <input type="text">Licensed: {{ guide.licensed|yesno:"Yes,No" }}</input>
+        {% endif %}
+
+    </div>
+
+{% endcomment %}
+
+</form>
+
+{% endblock %} 

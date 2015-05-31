@@ -1,0 +1,11 @@
+.member-profile {
+    float: right;
+}
+
+.guide-profile {
+    float: left;
+}
+
+h3 {
+    font-size: 16px;
+}

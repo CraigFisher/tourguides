@@ -1,0 +1,34 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+
+{% block child_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'profiles/profile.css' %}"/>
+{% endblock %}
+
+{% block content %}
+
+<h1>PUBLIC PUBLIC</h1>
+
+<div class="member-profile">
+
+    <h3>Basic Info</h3>
+    <p>Name: {{ profile_owner.first_name }} {{ profile_owner.last_name }}</p>
+    <p>username: {{ profile_owner.username }}</p>
+    <p>Gender: {{ profile.get_gender_display }}</p>
+    <p>Country: {{ profile.country }}</p>    
+    <p>Date of Birth: {{ profile.dob }}</p>
+    <p>E-mail: {{ profile_owner.email }}</p>
+
+</div>
+
+<div class="guide-profile">
+
+    {% if guide %}
+        <h3>Tour Guide Info</h3>
+        <p>{{ profile.description }}</p>
+        <p>Licensed: {{ profile.licensed|yesno:"Yes,No" }}</p>
+    {% endif %}
+
+</div>
+
+{% endblock %} 

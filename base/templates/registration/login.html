@@ -1,0 +1,39 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+
+{% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div>
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div>
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+{% endif %}
+
+<table>
+<tr>
+    <td>{{ form.username.label_tag }}</td>
+    <td>{{ form.username }}</td>
+</tr>
+<tr>
+    <td>{{ form.password.label_tag }}</td>
+    <td>{{ form.password }}</td>
+</tr>
+</table>
+
+
+<input type="submit" value="login" />
+<!-- <input type="hidden" name="next" value="{% url 'login' %}" /> -->
+</form>
+
+{% endblock %}
